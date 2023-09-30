@@ -14,14 +14,17 @@ public class Battle {
     }
 
     public void StartBattle(){
-        while (hero.getLifePoints() > 0 || monster.getLifePoints() > 0){
+        System.out.println("Começou a batalha");
+        while (hero.getLifePoints() > 0 && monster.getLifePoints() > 0){
             Character attacker = InitiativeCalc();
+
+            System.out.println("Quem ataca é "+ attacker.getName());
             Attack(attacker);
         }
         if(hero.getLifePoints() >0)
-            System.out.println("Vc ganhou a batalha");
+            System.out.println("Você ganhou a batalha");
         else{
-            System.out.println("Vc perdeu a batalha");
+            System.out.println("Você perdeu a batalha");
         }
     }
 
@@ -46,6 +49,8 @@ public class Battle {
 
         int attackFactor = dices.RollD10() + attacker.getAgility() + attacker.getStrength();
         int defenseFactor = dices.RollD10() + defender.getAgility() + defender.getDefense();
+        System.out.println("O ataque foi de " + attackFactor);
+        System.out.println("A defesa foi de " + defenseFactor);
         if(attackFactor > defenseFactor)
             DamageCalc(attacker,defender);
     }
@@ -57,18 +62,22 @@ public class Battle {
             case "2d4":
                 damage = dices.Roll2D4() + attacker.getStrength();
                 defender.setLifePoints(defender.getLifePoints() - damage);
+                System.out.println("Dano de "+ damage);
                 break;
             case "2d6":
                 damage = dices.Roll2D6() + attacker.getStrength();
                 defender.setLifePoints(defender.getLifePoints() - damage);
+                System.out.println("Dano de "+ damage);
                 break;
             case "3d2":
                 damage = dices.Roll3D2() + attacker.getStrength();
                 defender.setLifePoints(defender.getLifePoints() - damage);
+                System.out.println("Dano de "+ damage);
                 break;
             case "1d8":
                 damage = dices.RollD8() + attacker.getStrength();
                 defender.setLifePoints(defender.getLifePoints() - damage);
+                System.out.println("Dano de "+ damage);
                 break;
         }
     }

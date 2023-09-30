@@ -9,5 +9,6 @@ public class Kobold extends Character {
         this.defense = 2;
         this.agility = 4;
         this.damage = "3d2";
+        this.Name = "Kobold";
     }
 }

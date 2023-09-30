@@ -9,5 +9,6 @@ public class Barbarian extends Character {
         this.defense = 1;
         this.agility = 3;
         this.damage = "2d6";
+        this.Name = "Barabaro";
     }
 }

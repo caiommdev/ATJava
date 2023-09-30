@@ -9,5 +9,6 @@ public class Paladin extends Character {
         this.defense = 5;
         this.agility = 1;
         this.damage = "2d4";
+        this.Name = "Paladino";
     }
 }

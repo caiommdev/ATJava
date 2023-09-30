@@ -6,6 +6,7 @@ public abstract class Character {
     protected int defense;
     protected int agility;
     protected String damage;
+    protected String Name;
 
     public int getLifePoints(){
        return lifePoints;
@@ -27,6 +28,10 @@ public abstract class Character {
         return strength;
     }
 
+    public String getName() {
+        return Name;
+    }
+
     public void setAgility(int agility) {
         this.agility = agility;
     }
@@ -45,5 +50,9 @@ public abstract class Character {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 }

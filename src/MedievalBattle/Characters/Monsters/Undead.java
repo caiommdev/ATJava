@@ -9,5 +9,6 @@ public class Undead extends Character {
         this.defense = 0;
         this.agility = 1;
         this.damage = "2d4";
+        this.Name = "Morto-Vivo";
     }
 }

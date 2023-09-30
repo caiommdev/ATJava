@@ -9,5 +9,6 @@ public class Orc extends Character {
         this.defense = 2;
         this.agility = 2;
         this.damage = "1d8";
+        this.Name = "Orc";
     }
 }

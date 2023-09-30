@@ -9,5 +9,6 @@ public class Warrior extends Character {
         this.defense = 3;
         this.agility = 3;
         this.damage = "2d4";
+        this.Name = "Guerreiro";
     }
 }
