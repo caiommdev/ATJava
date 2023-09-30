@@ -1,5 +1,6 @@
 package MedievalBattle.Battle;
 
+import Logging.GameLog;
 import MedievalBattle.Characters.Character;
 import MedievalBattle.Battle.Dices.Dices;
 
@@ -13,18 +14,24 @@ public class Battle {
         this.dices = new Dices();
     }
 
-    public void StartBattle(){
+    public void StartBattle(GameLog log){
+        int numberOfRounds = 0;
         System.out.println("Começou a batalha");
         while (hero.getLifePoints() > 0 && monster.getLifePoints() > 0){
             Character attacker = InitiativeCalc();
 
             System.out.println("Quem ataca é "+ attacker.getName());
             Attack(attacker);
+            numberOfRounds++;
         }
-        if(hero.getLifePoints() >0)
+        log.setNumberOfRounds(numberOfRounds);
+        if(hero.getLifePoints() >0){
             System.out.println("Você ganhou a batalha");
+            log.setBattleStatus("GANHOU");
+        }
         else{
             System.out.println("Você perdeu a batalha");
+            log.setBattleStatus("perdeu");
         }
     }
 

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class GameLog {
     private LocalDate date;
+    private String userNick;
     private String heroClass;
     private String battleStatus;
     private String monsterClass;
@@ -29,6 +30,10 @@ public class GameLog {
         return monsterClass;
     }
 
+    public String getUserNick() {
+        return userNick;
+    }
+
     public void setBattleStatus(String battleStatus) {
         this.battleStatus = battleStatus;
     }
@@ -47,5 +52,9 @@ public class GameLog {
 
     public void setNumberOfRounds(int numberOfRounds) {
         this.numberOfRounds = numberOfRounds;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }
