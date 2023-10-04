@@ -1,3 +1,4 @@
+import Exceptions.InvalidClassException;
 import Logging.GameLog;
 import MedievalBattle.Battle.Battle;
 import MedievalBattle.Characters.Character;
@@ -16,24 +17,33 @@ public class Main {
     public static void main(String[] args) {
         GameLog log = new GameLog();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual seu nickname?");
-        String userName = scanner.nextLine();
-        log.setUserNick(userName);
-        log.setDate(LocalDate.now());
+        while(true){
+            try{
+                System.out.println("Qual seu nickname?");
+                String userName = scanner.nextLine();
+                log.setUserNick(userName);
+                log.setDate(LocalDate.now());
 
-        Character hero = ChouseHero(scanner);
-        log.setHeroClass(hero.getName());
+                Character hero = ChouseHero(scanner);
+                log.setHeroClass(hero.getName());
 
-        Character monster = GenerateRandomMonster();
-        log.setMonsterClass(monster.getName());
+                Character monster = GenerateRandomMonster();
+                log.setMonsterClass(monster.getName());
 
-        Battle battle = new Battle(hero, monster);
-        battle.StartBattle(log);
+                Battle battle = new Battle(hero, monster);
+                battle.StartBattle(log);
 
-        System.out.println();
+                System.out.println();
+            }
+            catch (Exception ex){
+                if (ex.getClass() == InvalidClassException.class)
+                    System.out.println("Escolha uma classe valida");
+            }
+        }
+
     }
 
-    private static  Character ChouseHero(Scanner scanner ){
+    private static  Character ChouseHero(Scanner scanner ) throws InvalidClassException {
 
         System.out.println("Escolha sua classe:");
         System.out.println("--- Guerreiro(1) ---");
@@ -47,8 +57,9 @@ public class Main {
                 return new Barbarian();
             case "3":
                 return new Paladin();
+            default:
+                throw new InvalidClassException();
         }
-        return null;
     }
 
     private static Character GenerateRandomMonster(){
