@@ -33,6 +33,7 @@ public class Battle {
             System.out.println("Você perdeu a batalha");
             log.setBattleStatus("perdeu");
         }
+        log.Log();
     }
 
     private Character InitiativeCalc() {

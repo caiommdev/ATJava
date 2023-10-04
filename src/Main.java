@@ -17,7 +17,8 @@ public class Main {
         GameLog log = new GameLog();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Qual seu nickname?");
-        log.setUserNick(scanner.nextLine());
+        String userName = scanner.nextLine();
+        log.setUserNick(userName);
         log.setDate(LocalDate.now());
 
         Character hero = ChouseHero(scanner);
