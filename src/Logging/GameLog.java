@@ -151,32 +151,32 @@ public class GameLog {
         else if (contBarbarian > contWarrior && contBarbarian > contPaladin)
             mostPlayerClass = "Barbaro";
         else if (contPaladin > contWarrior && contPaladin > contBarbarian)
-            mostPlayerClass = "Barbaro";
+            mostPlayerClass = "Paladino";
         else
             mostPlayerClass = "Você não tem";
         System.out.println("Sua classe mais jogada é "+ mostPlayerClass);
     }
 
     private void MostPlayedMonster(List<String> lines){
-        int contBarbarian = 0;
-        int contWarrior = 0;
-        int contPaladin = 0;
+        int contOrc = 0;
+        int contUndead = 0;
+        int contKobold = 0;
         for (String line:lines) {
             if (line.contains("Orc"))
-                contWarrior++;
+                contUndead++;
 
             if (line.contains("Morto-Vivo"))
-                contBarbarian++;
+                contOrc++;
 
             if(line.contains("Kobold"))
-                contPaladin++;
+                contKobold++;
         }
         String mostPlayerClass = "";
-        if(contWarrior > contBarbarian && contWarrior > contPaladin)
+        if(contUndead > contOrc && contUndead > contKobold)
             mostPlayerClass = "Orc";
-        else if (contBarbarian > contWarrior && contBarbarian > contPaladin)
+        else if (contOrc > contUndead && contOrc > contKobold)
             mostPlayerClass = "Morto-Vivo";
-        else if (contPaladin > contWarrior && contPaladin > contBarbarian)
+        else if (contKobold > contUndead && contKobold > contOrc)
             mostPlayerClass = "Kobold";
         else
             mostPlayerClass = "Você não tem";
