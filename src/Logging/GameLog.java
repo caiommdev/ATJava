@@ -64,6 +64,20 @@ public class GameLog {
         this.userNick = userNick;
     }
 
+    public void showData(){
+        String fileName = "src/temp/" + getUserNick() + ".csv";
+        ValidateFile(fileName);
+        try {
+            List<String> lines = ReadAllLines(fileName);
+            //lines.stream().map(linha -> linha.split(";"));
+            MostPlayedClass(lines);
+            MostPlayedMonster(lines);
+            TotalPonts(lines);
+        } catch (IOException e) {
+            System.out.println("Erro na escrita.");
+            e.printStackTrace();
+        }
+    }
 
     public void Log(){
         String fileName = "src/temp/" + getUserNick() + ".csv";
@@ -115,5 +129,67 @@ public class GameLog {
             bufferedWriter.append(i);
         }
         bufferedWriter.close();
+    }
+
+    private void MostPlayedClass(List<String> lines){
+        int contBarbarian = 0;
+        int contWarrior = 0;
+        int contPaladin = 0;
+        for (String line:lines) {
+            if (line.contains("Guerreiro"))
+                contWarrior++;
+
+            if (line.contains("Barbaro"))
+                contBarbarian++;
+
+            if(line.contains("Paladino"))
+                contPaladin++;
+        }
+        String mostPlayerClass = "";
+        if(contWarrior > contBarbarian && contWarrior > contPaladin)
+            mostPlayerClass = "Guerreiro";
+        else if (contBarbarian > contWarrior && contBarbarian > contPaladin)
+            mostPlayerClass = "Barbaro";
+        else if (contPaladin > contWarrior && contPaladin > contBarbarian)
+            mostPlayerClass = "Barbaro";
+        else
+            mostPlayerClass = "Você não tem";
+        System.out.println("Sua classe mais jogada é "+ mostPlayerClass);
+    }
+
+    private void MostPlayedMonster(List<String> lines){
+        int contBarbarian = 0;
+        int contWarrior = 0;
+        int contPaladin = 0;
+        for (String line:lines) {
+            if (line.contains("Orc"))
+                contWarrior++;
+
+            if (line.contains("Morto-Vivo"))
+                contBarbarian++;
+
+            if(line.contains("Kobold"))
+                contPaladin++;
+        }
+        String mostPlayerClass = "";
+        if(contWarrior > contBarbarian && contWarrior > contPaladin)
+            mostPlayerClass = "Orc";
+        else if (contBarbarian > contWarrior && contBarbarian > contPaladin)
+            mostPlayerClass = "Morto-Vivo";
+        else if (contPaladin > contWarrior && contPaladin > contBarbarian)
+            mostPlayerClass = "Kobold";
+        else
+            mostPlayerClass = "Você não tem";
+        System.out.println("Seu monstro mais jogado é "+ mostPlayerClass);
+    }
+
+    private void TotalPonts(List<String> lines){
+        int numberOfPoints = 0;
+        for (String line :
+                lines) {
+            var list = line.split(";");
+            numberOfPoints += 100 - Integer.parseInt(list[4].replace("\n", ""));
+        }
+        System.out.println("Você fez "+numberOfPoints+" pontos");
     }
 }

@@ -17,7 +17,8 @@ public class Main {
     public static void main(String[] args) {
         GameLog log = new GameLog();
         Scanner scanner = new Scanner(System.in);
-        while(true){
+        boolean loop = true;
+        while(loop){
             try{
                 System.out.println("Qual seu nickname?");
                 String userName = scanner.nextLine();
@@ -33,7 +34,12 @@ public class Main {
                 Battle battle = new Battle(hero, monster);
                 battle.StartBattle(log);
 
-                System.out.println();
+                System.out.println("Quer continuar? (s/n)");
+                String awanser = scanner.nextLine();
+                if(awanser.toLowerCase().equals("n"))
+                    loop = false;
+
+                log.showData();
             }
             catch (Exception ex){
                 if (ex.getClass() == InvalidClassException.class)
